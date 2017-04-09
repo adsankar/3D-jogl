@@ -36,7 +36,7 @@ public class InteriorLightingRunner {
 		jf.setSize(1000,1000);
 		GLCapabilities glCap = new GLCapabilities();  
 
-		SankarInteriorLighting l = new SankarInteriorLighting(glCap);
+		SankarInteriorLightingV2 l = new SankarInteriorLightingV2(glCap);
 		jf.add(l);//add it to the frame
 
 		jf.setVisible(true);//show the frame

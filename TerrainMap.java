@@ -26,11 +26,10 @@ import com.sun.opengl.util.j2d.TextRenderer;
  */
 public class TerrainMap extends GLCanvas{
 
-	private final double MAX_HEIGHT = 40; //set roughness
-	private final int SIZE = 128; //set size
+	private final double MAX_HEIGHT = 40;
+	private final int SIZE = 128;
 	private final double MOVE_SPEED = 5;
 	private TextRenderer renderer;
-	
 	private double moveX =0;
 	private double moveY =0;
 	private int lightAngle=0;
@@ -46,11 +45,21 @@ public class TerrainMap extends GLCanvas{
 	private float[] diffuse = {0.8f, 0.8f,0.8f, 1};
 	private float[] ambient = {0.2f,0.2f,0.2f,1};
 	private float[] specular = {1,1,1,1};
-	private float[] emission = {.8f,0.8f,0.8f, 0};
+	private float[] emission = {0,0,0f, 0};
 	private float[]  fogColor= {0,0,0, 1};      // Fog Colors
 	private FloatBuffer vert;
 	private FloatBuffer colors;
 	private FloatBuffer norms;
+
+	/**
+	 * Instantiate an TextureRunner object
+	 * @param args not used
+	 */
+	public static void main(String[] args){
+		new TerrainMapRunner();
+	}//end main
+	
+	//TODO extending out, sun
 
 	/**
 	 * Constructor which creates the GLCanvas and adds the required listeners to it.
@@ -232,7 +241,7 @@ public class TerrainMap extends GLCanvas{
 	 */
 	public void doDisplay(GL myGL, int w, int h){
 		//enable the light
-		//myGL.glEnable(GL.GL_LIGHT0);
+		myGL.glEnable(GL.GL_LIGHT0);
 		myGL.glLightfv(GL.GL_LIGHT0,GL.GL_AMBIENT,ambient,0);
 		myGL.glLightfv(GL.GL_LIGHT0,GL.GL_DIFFUSE, diffuse,0);
 		myGL.glLightfv(GL.GL_LIGHT0,GL.GL_SPECULAR,specular,0);
@@ -243,7 +252,7 @@ public class TerrainMap extends GLCanvas{
 
 		//fog effects
 		myGL.glEnable(GL.GL_FOG);
-		myGL.glFogi (GL.GL_FOG_MODE, GL.GL_EXP2);
+		myGL.glFogi (GL.GL_FOG_MODE, GL.GL_EXP);
 		myGL.glFogf (GL.GL_FOG_DENSITY, .2f);
 		myGL.glFogfv(GL.GL_FOG_COLOR, fogColor, 0);
 		myGL.glHint(GL.GL_FOG_HINT, GL.GL_NICEST);
@@ -253,7 +262,7 @@ public class TerrainMap extends GLCanvas{
 		myGLU.gluLookAt(0,0,-4,0f,0f,20f,0f,1f,0f);
 		myGL.glTranslated(-2,-.75,0);
 		myGL.glRotated(45,1,0,0);
-		myGL.glScaled(0.04, 0.04, 0.04);
+		myGL.glScaled(0.03, 0.03, 0.03);
 
 
 		//handle rotation from key/mouse listeners
@@ -270,13 +279,16 @@ public class TerrainMap extends GLCanvas{
 		drawMap(myGL);
 		myGL.glPopMatrix();
 
+
+		//TODO here
 		//set the position and properties of the light
 		myGL.glLightfv(GL.GL_LIGHT0, GL.GL_POSITION, new float[]{lightPosition[0],lightPosition[1],lightPosition[2], 1},0);
-		myGL.glColorMaterial(GL.GL_FRONT_AND_BACK, GL.GL_AMBIENT);
+	//	myGL.glColorMaterial(GL.GL_FRONT_AND_BACK, GL.GL_AMBIENT);
+
 		myGL.glTranslated(75, 30, -25);
 		myGL.glTranslated(lightPosition[0], lightPosition[1], lightPosition[2]);
-		myGL.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_AMBIENT,ambient,0);
-		myGL.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_DIFFUSE,diffuse,0);
+		//myGL.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_AMBIENT,ambient,0);
+		//myGL.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_DIFFUSE,diffuse,0);
 		myGL.glMaterialf(GL.GL_FRONT_AND_BACK,GL.GL_SHININESS,0f);
 		if (lightsOn){
 			myGL.glMaterialfv(GL.GL_FRONT,GL.GL_EMISSION,emission,0);
@@ -327,11 +339,11 @@ public class TerrainMap extends GLCanvas{
 		myGL.glEnable(GL.GL_DEPTH_TEST);
 		myGL.glEnable(GL.GL_NORMALIZE);
 		myGL.glEnable (GL.GL_BLEND); 
-	//	myGL.glEnable(GL.GL_LIGHTING);
+		myGL.glEnable(GL.GL_LIGHTING);
 		myGL.glEnable (GL.GL_POLYGON_SMOOTH); 
 		myGL.glHint(GL.GL_POLYGON_SMOOTH_HINT, GL.GL_NICEST); 
 		myGL.glShadeModel(GL.GL_SMOOTH);
-	//	myGL.glEnable(GL.GL_COLOR_MATERIAL);
+		myGL.glEnable(GL.GL_COLOR_MATERIAL);
 		myGL.glClearColor(0f,0f,0f,0f);
 
 		//initialize the textRenderer so that text appears on screen
@@ -339,7 +351,7 @@ public class TerrainMap extends GLCanvas{
 		myGL.glClearColor(0f,0f,0f,1f);//so that not all of the shapes have this color
 		height = makeHeightMap((int)(Math.log(SIZE)/Math.log(2)), MAX_HEIGHT*Math.random(), MAX_HEIGHT*Math.random(), MAX_HEIGHT*Math.random(), MAX_HEIGHT*Math.random(), MAX_HEIGHT);
 		setupArrays();
-		//randomMap(MAX_HEIGHT*Math.random(),MAX_HEIGHT*Math.random(),MAX_HEIGHT*Math.random(),MAX_HEIGHT*Math.random());
+		//shmap(maxHeight,maxHeight*Math.random(),maxHeight*Math.random(),maxHeight*Math.random(),maxHeight*Math.random());
 
 	}// end doInit
 

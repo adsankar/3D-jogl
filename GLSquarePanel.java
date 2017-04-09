@@ -12,7 +12,6 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.glu.GLU;
 
 import com.sun.opengl.util.BufferUtil;
-import com.sun.opengl.util.GLUT;
 
 
 public class GLSquarePanel extends GLCanvas {

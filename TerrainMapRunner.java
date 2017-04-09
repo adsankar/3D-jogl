@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Toolkit;
 
 import javax.media.opengl.GLCapabilities;
 import javax.swing.JFrame;
@@ -7,24 +6,10 @@ import javax.swing.JFrame;
 import com.sun.opengl.util.Animator;
 import com.sun.opengl.util.FPSAnimator;
 
-/**
- * Terrain Map Runner
- * @author Aleksander Sankar and Sohum Dalal
- * 3D Graphics Pd. 2
- * Mr. Fowler
- */
+
 public class TerrainMapRunner {
 
 	private Animator an;
-
-	/**
-	 * Instantiate an TerrainMapRunner object
-	 * @param args not used
-	 */
-	public static void main(String[] args) {
-		new TerrainMapRunner();
-
-	}//end main
 
 	/**
 	 * Constructor which creates a frame, sets the size, windowClosing event, adds the GLCanvas
@@ -34,8 +19,7 @@ public class TerrainMapRunner {
 		JFrame jf = new JFrame("Terrain Map");
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setBackground(Color.gray);
-		jf.setSize((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
-				(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+		jf.setSize(1000,1000);
 		GLCapabilities glCap = new GLCapabilities();  
 
 		TerrainMap t = new TerrainMap(glCap);

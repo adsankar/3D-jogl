@@ -470,7 +470,7 @@ public class TextureExercises extends GLCanvas{
 			brickTexture = TextureIO.newTexture(new File("brickTexture.jpg"),true);
 			circuitTexture = TextureIO.newTexture(new File("circuit.jpg"),true);
 			plaidTexture =TextureIO.newTexture(new File("plaid.jpg"),true);
-			ballTexture =TextureIO.newTexture(new File("earthTexture.jpg"),true);
+			ballTexture =TextureIO.newTexture(new File("earthmap1k.jpg"),true);
 		}//end try
 		catch(IOException e){
 			System.out.println("File not found!");

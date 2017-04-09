@@ -24,9 +24,6 @@ import com.sun.opengl.util.j2d.TextRenderer;
  */
 public class SankarInteriorLighting extends GLCanvas {
 
-	//
-	
-	
 	//6 vertices of cube
 	private float roomSize = 2.0f;
 	private float[][] cubePoints = {{roomSize,roomSize,roomSize},{roomSize,-roomSize,roomSize},{roomSize,-roomSize,-roomSize},{roomSize,roomSize,-roomSize},{-roomSize, roomSize,-roomSize},{-roomSize,-roomSize,-roomSize},{-roomSize, -roomSize,roomSize},{-roomSize,roomSize,roomSize}};
@@ -309,13 +306,13 @@ public class SankarInteriorLighting extends GLCanvas {
 	public void drawBox(GL myGL){
 		//set the properties of the wall's colors
 		myGL.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_AMBIENT,zeros,0);
-		myGL.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_SPECULAR,new float[]{0.3f, 0.3f,0.3f,1},0);
-		myGL.glMaterialf(GL.GL_FRONT_AND_BACK,GL.GL_SHININESS,0f);
+		myGL.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_SPECULAR,new float[]{0.3f, 0.3f,0.3f,1},0);		myGL.glMaterialf(GL.GL_FRONT_AND_BACK,GL.GL_SHININESS,0f);
 		myGL.glMaterialfv(GL.GL_FRONT_AND_BACK,GL.GL_EMISSION,zeros,0);
 
 		myGL.glNormal3d(-1, 0, 0);
 		myGL.glBegin(GL.GL_QUADS);
 		myGL.glMaterialfv(GL.GL_FRONT_AND_BACK, GL.GL_AMBIENT_AND_DIFFUSE, new float[]{1,0,0,1},0);
+
 		myGL.glVertex3d(cubePoints[0][0],cubePoints[0][1],cubePoints[0][2]);
 		myGL.glVertex3d(cubePoints[1][0],cubePoints[1][1],cubePoints[1][2]);
 		myGL.glVertex3d(cubePoints[2][0],cubePoints[2][1],cubePoints[2][2]);
@@ -367,7 +364,6 @@ public class SankarInteriorLighting extends GLCanvas {
 		myGL.glVertex3d(cubePoints[6][0],cubePoints[6][1],cubePoints[6][2]);
 		myGL.glEnd();
 	}//end drawBox
-	
 
 	/**
 	 * Called when the frame is reshaped

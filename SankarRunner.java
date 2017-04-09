@@ -24,7 +24,7 @@ public class SankarRunner {
 	}
 	
 	public SankarRunner(){
-		Frame f = new Frame("Move mouse to change camera angle");
+		Frame f = new Frame("It's shapes");
 		GLCapabilities glCap = new GLCapabilities();
 		GLSquarePanel gls = new GLSquarePanel(glCap);
 		f.add(gls);
